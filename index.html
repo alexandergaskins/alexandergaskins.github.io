@@ -1,39 +1,82 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FuelDeep3D</title>
+<title>Alexander Gaskins</title>
 
 <style>
 
+html {
+  scroll-behavior: smooth;
+}
+
 body{
   margin:0;
-  padding:40px 20px;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:#f8f9fa;
-  display:flex;
-  justify-content:center;
+  color:#333;
 }
+
+/* NAVBAR */
+
+.navbar{
+  position:sticky;
+  top:0;
+  background:white;
+  border-bottom:1px solid #ddd;
+  padding:15px 0;
+  z-index:1000;
+}
+
+.nav-container{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-links a{
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:600;
+  color:#333;
+}
+
+.nav-links a:hover{
+  color:#27ae60;
+}
+
+/* GENERAL LAYOUT */
 
 .container{
   max-width:900px;
-  width:100%;
+  margin:auto;
+  padding:40px 20px;
   text-align:center;
 }
 
 h1{
-  margin-bottom:10px;
   font-size:36px;
+  margin-bottom:10px;
+}
+
+h2{
+  font-size:28px;
+  margin-bottom:25px;
 }
 
 .subtitle{
   font-size:18px;
-  color:#444;
+  color:#555;
   margin-bottom:25px;
 }
 
+/* BUTTONS */
+
 .buttons{
-  margin-bottom:30px;
+  margin-bottom:35px;
 }
 
 .button{
@@ -55,6 +98,8 @@ h1{
   color:white;
 }
 
+/* VIDEO */
+
 .video-container{
   width:100%;
   border-radius:8px;
@@ -67,40 +112,195 @@ video{
   display:block;
 }
 
+/* GRID LAYOUT */
+
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+}
+
+.card{
+  width:220px;
+  text-align:center;
+  transition:transform .2s;
+}
+
+.card img{
+  width:100%;
+  border-radius:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.card p{
+  margin-top:8px;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+/* CONTACT */
+
+.contact a{
+  display:block;
+  margin:8px 0;
+  text-decoration:none;
+  color:#333;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- NAVBAR -->
+
+<div class="navbar">
+<div class="nav-container">
+
+<strong>Alexander Gaskins</strong>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#software">Software</a>
+<a href="#presentations">Presentations</a>
+<a href="#posters">Posters</a>
+<a href="#cv">CV</a>
+<a href="#contact">Contact</a>
+</div>
+
+</div>
+</div>
+
+<!-- HOME -->
+
+<section id="home" class="container">
 
 <h1>Alexander Gaskins</h1>
 
 <p class="subtitle">
-FuelDeep 3D: An R package for Fire Fuels Segmentation in 3D Using Terrestrial Laser Scanning and Deep Learning
+Forest Resources & Conservation — Geomatics<br>
+Remote Sensing • AI • LiDAR • Wildfire Science
+</p>
+
+</section>
+
+<!-- SOFTWARE -->
+
+<section id="software" class="container">
+
+<h2>Software</h2>
+
+<p class="subtitle">
+FuelDeep3D: Fire Fuels Segmentation in 3D Using Terrestrial Laser Scanning and Deep Learning
 </p>
 
 <div class="buttons">
 
 <a href="https://cran.r-project.org/web/packages/FuelDeep3D/index.html"
-class="button button-cran">
-CRAN
-</a>
+class="button button-cran" target="_blank">CRAN</a>
 
 <a href="https://github.com/venkatasivanaga/FuelDeep3D/tree/main"
-class="button button-github">
-GitHub
-</a>
+class="button button-github" target="_blank">GitHub</a>
 
 </div>
 
 <div class="video-container">
-  <video autoplay loop muted playsinline poster="vlcsnap-2026-03-05-14h35m01s370.png">
-    <source src="FuelDeep3D.mp4" type="video/mp4">
-  </video>
+
+<video autoplay loop muted playsinline poster="vlcsnap-2026-03-05-14h35m01s370.png">
+<source src="FuelDeep3D.mp4" type="video/mp4">
+</video>
+
+</div>
+
+</section>
+
+<!-- PRESENTATIONS -->
+
+<section id="presentations" class="container">
+
+<h2>Presentations</h2>
+
+<div class="grid">
+
+<div class="card">
+<a href="presentation1.pptx" target="_blank">
+<img src="presentation1-thumbnail.png">
+<p>FuelDeep3D Overview</p>
+</a>
+</div>
+
+<div class="card">
+<a href="presentation2.pptx" target="_blank">
+<img src="presentation2-thumbnail.png">
+<p>Spanish Moss Classification Using TLS</p>
+</a>
 </div>
 
 </div>
+
+</section>
+
+<!-- POSTERS -->
+
+<section id="posters" class="container">
+
+<h2>Posters</h2>
+
+<div class="grid">
+
+<div class="card">
+<a href="poster1.png" target="_blank">
+<img src="poster1.png">
+<p>FuelDeep3D Poster</p>
+</a>
+</div>
+
+<div class="card">
+<a href="poster2.png" target="_blank">
+<img src="poster2.png">
+<p>Spanish Moss TLS Poster</p>
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- CV -->
+
+<section id="cv" class="container">
+
+<h2>CV</h2>
+
+<p>
+<a href="Alexander_Gaskins_CV.pdf" target="_blank" class="button button-github">
+Download CV
+</a>
+</p>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="container contact">
+
+<h2>Contact</h2>
+
+<a href="mailto:alexandergaskins@ufl.edu">alexandergaskins@ufl.edu</a>
+
+<a href="https://github.com/alexandergaskins" target="_blank">
+GitHub
+</a>
+
+<a href="https://scholar.google.com" target="_blank">
+Google Scholar
+</a>
+
+</section>
 
 </body>
 </html>
+```
