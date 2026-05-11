@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexander Gaskins</title>
+
 <style>
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:#f8f9fa;
   color:#333;
+  line-height:1.6;
 }
+
 /* NAVBAR */
 .navbar{
   position:sticky;
@@ -22,46 +27,57 @@ body{
   padding:15px 0;
   z-index:1000;
 }
+
 .nav-container{
   max-width:1000px;
   margin:auto;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:0 20px;
 }
+
 .nav-links a{
-  margin:0 15px;
+  margin:0 12px;
   text-decoration:none;
   font-weight:600;
   color:#333;
+  transition:color .2s;
 }
+
 .nav-links a:hover{
   color:#27ae60;
 }
+
 /* GENERAL LAYOUT */
 .container{
   max-width:900px;
   margin:auto;
-  padding:40px 20px;
+  padding:50px 20px;
   text-align:center;
 }
+
 h1{
-  font-size:36px;
+  font-size:42px;
   margin-bottom:10px;
 }
+
 h2{
-  font-size:28px;
+  font-size:30px;
   margin-bottom:25px;
 }
+
 .subtitle{
   font-size:18px;
   color:#555;
   margin-bottom:25px;
 }
+
 /* BUTTONS */
 .buttons{
   margin-bottom:35px;
 }
+
 .button{
   padding:12px 22px;
   border-radius:6px;
@@ -69,15 +85,23 @@ h2{
   font-weight:600;
   margin:5px;
   display:inline-block;
+  transition:opacity .2s;
 }
+
+.button:hover{
+  opacity:.9;
+}
+
 .button-cran{
   background:#27ae60;
   color:white;
 }
+
 .button-github{
   background:#333;
   color:white;
 }
+
 /* VIDEO */
 .video-container{
   width:100%;
@@ -85,10 +109,12 @@ h2{
   overflow:hidden;
   box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
+
 video{
   width:100%;
   display:block;
 }
+
 /* PRESENTATION VIDEOS GRID */
 .video-grid{
   display:flex;
@@ -96,23 +122,28 @@ video{
   justify-content:center;
   gap:30px;
 }
+
 .video-card{
   width:400px;
   text-align:center;
   transition:transform .2s;
 }
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
 .video-card iframe{
   width:100%;
   border-radius:8px;
   box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
+
 .video-card p{
-  margin-top:8px;
+  margin-top:10px;
   font-weight:600;
 }
-.video-card:hover{
-  transform:translateY(-5px);
-}
+
 /* GRID LAYOUT */
 .grid{
   display:flex;
@@ -120,135 +151,291 @@ video{
   justify-content:center;
   gap:25px;
 }
+
 .card{
   width:220px;
   text-align:center;
   transition:transform .2s;
 }
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
 .card img{
   width:100%;
   border-radius:8px;
   box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
+
 .card p{
-  margin-top:8px;
+  margin-top:10px;
+  font-weight:600;
+  color:#333;
 }
-.card:hover{
-  transform:translateY(-5px);
+
+.card a{
+  text-decoration:none;
 }
+
 /* CONTACT */
 .contact a{
   display:block;
-  margin:8px 0;
+  margin:10px 0;
   text-decoration:none;
   color:#333;
+  transition:color .2s;
+}
+
+.contact a:hover{
+  color:#27ae60;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .nav-container{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .video-card{
+    width:100%;
+  }
+
+  .card{
+    width:100%;
+    max-width:320px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  h2{
+    font-size:26px;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <!-- NAVBAR -->
 <div class="navbar">
-<div class="nav-container">
-<strong>Alexander Gaskins</strong>
-<div class="nav-links">
-<a href="#home">Home</a>
-<a href="#software">Software</a>
-<a href="#presentation-videos">Presentation Videos</a>
-<a href="#presentation-slides">Presentation Slides</a>
-<a href="#posters">Posters</a>
-<a href="#cv">CV</a>
-<a href="#contact">Contact</a>
-</div>
-</div>
-</div>
-<!-- HOME -->
-<section id="home" class="container">
-<h1>Alexander Gaskins</h1>
-<p class="subtitle">
-Forest Resources & Conservation — Geomatics<br>
-Remote Sensing • AI • Forests • Earth Science
-</p>
-</section>
-<!-- SOFTWARE -->
-<section id="software" class="container">
-<h2>Software</h2>
-<p class="subtitle">
-FuelDeep3D: Fire Fuels Segmentation in 3D Using Terrestrial Laser Scanning and Deep Learning
-</p>
-<div class="buttons">
-<a href="https://cran.r-project.org/web/packages/FuelDeep3D/index.html"
-class="button button-cran" target="_blank">CRAN</a>
-<a href="https://github.com/venkatasivanaga/FuelDeep3D/tree/main"
-class="button button-github" target="_blank">GitHub</a>
-</div>
-<div class="video-container">
-<video autoplay loop muted playsinline poster="vlcsnap-2026-03-05-14h35m01s370.png">
-<source src="FuelDeep3D.mp4" type="video/mp4">
-</video>
-</div>
-</section>
-<!-- PRESENTATION VIDEOS -->
-<section id="presentation-videos" class="container">
-<h2>Presentation Videos</h2>
-<div class="video-grid">
-  <div class="video-card">
-    <iframe height="225"
-      src="https://www.youtube.com/embed/_b7H3WasvBk"
-      title="UF FGSO 2025 Presentation"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-    <p>UF FGSO 2025 Presentation</p>
+  <div class="nav-container">
+    <strong>Alexander Gaskins</strong>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#software">Software</a>
+      <a href="#presentation-videos">Presentation Videos</a>
+      <a href="#presentation-slides">Presentation Slides</a>
+      <a href="#posters">Posters</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </div>
+
+<!-- HOME -->
+<section id="home" class="container">
+
+  <h1>Alexander Gaskins</h1>
+
+  <p class="subtitle">
+    Forest Resources & Conservation — Geomatics<br>
+    Remote Sensing • AI • Forests • Earth Science
+  </p>
+
 </section>
+
+<!-- SOFTWARE -->
+<section id="software" class="container">
+
+  <h2>Software</h2>
+
+  <p class="subtitle">
+    FuelDeep3D: Fire Fuels Segmentation in 3D Using Terrestrial Laser Scanning and Deep Learning
+  </p>
+
+  <div class="buttons">
+
+    <a href="https://cran.r-project.org/web/packages/FuelDeep3D/index.html"
+       class="button button-cran"
+       target="_blank"
+       rel="noopener noreferrer">
+       CRAN
+    </a>
+
+    <a href="https://github.com/venkatasivanaga/FuelDeep3D/tree/main"
+       class="button button-github"
+       target="_blank"
+       rel="noopener noreferrer">
+       GitHub
+    </a>
+
+  </div>
+
+  <div class="video-container">
+
+    <video autoplay loop muted playsinline poster="vlcsnap-2026-03-05-14h35m01s370.png">
+
+      <source src="FuelDeep3D.mp4" type="video/mp4">
+
+    </video>
+
+  </div>
+
+</section>
+
+<!-- PRESENTATION VIDEOS -->
+<section id="presentation-videos" class="container">
+
+  <h2>Presentation Videos</h2>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+
+      <iframe height="225"
+        src="https://www.youtube.com/embed/_b7H3WasvBk"
+        title="UF FGSO 2025 Presentation"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+
+      <p>UF FGSO 2025 Presentation</p>
+
+    </div>
+
+  </div>
+
+</section>
+
 <!-- PRESENTATION SLIDES -->
 <section id="presentation-slides" class="container">
-<h2>Presentation Slides</h2>
-<div class="grid">
-<div class="card">
-<a href="https://docs.google.com/presentation/d/1z_rD4JgY-krRcYjFAL_isg-PTlgc8EAE/edit?usp=drive_link&ouid=107642503234039457639&rtpof=true&sd=true" target="_blank">
-<img src="sesaf_presentation.jpg">
-<p>SESAF Presentation</p>
-</a>
-</div>
-<div class="card">
-<a href="https://docs.google.com/presentation/d/14F7SQRQWt4j1p9cXjaniXmeLEVPAWSL5/edit?usp=drive_link&ouid=107642503234039457639&rtpof=true&sd=true" target="_blank">
-<img src="FGSO_Presentation.jpg">
-<p>UF FGSO 2025 Presentation</p>
-</a>
-</div>
-</div>
+
+  <h2>Presentation Slides</h2>
+
+  <div class="grid">
+
+    <!-- SESAF -->
+    <div class="card">
+
+      <a href="https://1drv.ms/p/c/46305d93d7c98afa/IQANUdN2OO5lTqvmQV8hclUXAb1Zjgsfy-0DmIC7AMYe1Cw?e=Q0bPTc"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <img src="sesaf_presentation.jpg"
+             alt="SESAF Presentation"
+             loading="lazy">
+
+        <p>SESAF Presentation</p>
+
+      </a>
+
+    </div>
+
+    <!-- FGSO -->
+    <div class="card">
+
+      <a href="https://1drv.ms/p/c/46305d93d7c98afa/IQDaCBsYz0PhRbssi__we3OmARaNyZPloSgW8DS_6Y44YCY?e=EVacg2"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <img src="FGSO_Presentation.jpg"
+             alt="UF FGSO 2025 Presentation"
+             loading="lazy">
+
+        <p>UF FGSO 2025 Presentation</p>
+
+      </a>
+
+    </div>
+
+  </div>
+
 </section>
+
 <!-- POSTERS -->
 <section id="posters" class="container">
-<h2>Posters</h2>
-<div class="grid">
-<div class="card">
-<a href="moss.jpg" target="_blank">
-<img src="moss.jpg">
-<p>Spanish Moss Poster</p>
-</a>
-</div>
-</div>
+
+  <h2>Posters</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <a href="moss.jpg"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <img src="moss.jpg"
+             alt="Spanish Moss Poster"
+             loading="lazy">
+
+        <p>Spanish Moss Poster</p>
+
+      </a>
+
+    </div>
+
+  </div>
+
 </section>
+
 <!-- CV -->
 <section id="cv" class="container">
-<h2>CV</h2>
-<p>
-<a href="CV.pdf" target="_blank" class="button button-github">
-Download CV
-</a>
-</p>
+
+  <h2>CV</h2>
+
+  <p>
+    <a href="CV.pdf"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="button button-github">
+
+       Download CV
+
+    </a>
+  </p>
+
 </section>
+
 <!-- CONTACT -->
 <section id="contact" class="container contact">
-<h2>Contact</h2>
-<a href="mailto:alexandergaskins@ufl.edu">alexandergaskins@ufl.edu</a>
-<a href="mailto:gaskins.alex@yahoo.com">gaskins.alex@yahoo.com</a>
-<a href="https://github.com/alexandergaskins" target="_blank">GitHub</a>
-<a href="https://www.linkedin.com/in/alexandergaskins" target="_blank">LinkedIn</a>
+
+  <h2>Contact</h2>
+
+  <a href="mailto:alexandergaskins@ufl.edu">
+    alexandergaskins@ufl.edu
+  </a>
+
+  <a href="mailto:gaskins.alex@yahoo.com">
+    gaskins.alex@yahoo.com
+  </a>
+
+  <a href="https://github.com/alexandergaskins"
+     target="_blank"
+     rel="noopener noreferrer">
+     GitHub
+  </a>
+
+  <a href="https://www.linkedin.com/in/alexandergaskins"
+     target="_blank"
+     rel="noopener noreferrer">
+     LinkedIn
+  </a>
+
 </section>
+
 </body>
 </html>
