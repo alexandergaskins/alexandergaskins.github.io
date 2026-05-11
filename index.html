@@ -3,22 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Alexander Gaskins</title>
-
 <style>
-
 html {
   scroll-behavior: smooth;
 }
-
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:#f8f9fa;
   color:#333;
 }
-
 /* NAVBAR */
-
 .navbar{
   position:sticky;
   top:0;
@@ -27,7 +22,6 @@ body{
   padding:15px 0;
   z-index:1000;
 }
-
 .nav-container{
   max-width:1000px;
   margin:auto;
@@ -35,49 +29,39 @@ body{
   justify-content:space-between;
   align-items:center;
 }
-
 .nav-links a{
   margin:0 15px;
   text-decoration:none;
   font-weight:600;
   color:#333;
 }
-
 .nav-links a:hover{
   color:#27ae60;
 }
-
 /* GENERAL LAYOUT */
-
 .container{
   max-width:900px;
   margin:auto;
   padding:40px 20px;
   text-align:center;
 }
-
 h1{
   font-size:36px;
   margin-bottom:10px;
 }
-
 h2{
   font-size:28px;
   margin-bottom:25px;
 }
-
 .subtitle{
   font-size:18px;
   color:#555;
   margin-bottom:25px;
 }
-
 /* BUTTONS */
-
 .buttons{
   margin-bottom:35px;
 }
-
 .button{
   padding:12px 22px;
   border-radius:6px;
@@ -86,214 +70,192 @@ h2{
   margin:5px;
   display:inline-block;
 }
-
 .button-cran{
   background:#27ae60;
   color:white;
 }
-
 .button-github{
   background:#333;
   color:white;
 }
-
 /* VIDEO */
-
 .video-container{
   width:100%;
   border-radius:8px;
   overflow:hidden;
   box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
-
 video{
   width:100%;
   display:block;
 }
-
+/* PRESENTATION VIDEOS GRID */
+.video-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+.video-card{
+  width:400px;
+  text-align:center;
+  transition:transform .2s;
+}
+.video-card video{
+  width:100%;
+  border-radius:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+.video-card p{
+  margin-top:8px;
+  font-weight:600;
+}
+.video-card:hover{
+  transform:translateY(-5px);
+}
 /* GRID LAYOUT */
-
 .grid{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:25px;
 }
-
 .card{
   width:220px;
   text-align:center;
   transition:transform .2s;
 }
-
 .card img{
   width:100%;
   border-radius:8px;
   box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
-
 .card p{
   margin-top:8px;
 }
-
 .card:hover{
   transform:translateY(-5px);
 }
-
 /* CONTACT */
-
 .contact a{
   display:block;
   margin:8px 0;
   text-decoration:none;
   color:#333;
 }
-
 </style>
 </head>
-
 <body>
-
 <!-- NAVBAR -->
-
 <div class="navbar">
 <div class="nav-container">
-
 <strong>Alexander Gaskins</strong>
-
 <div class="nav-links">
 <a href="#home">Home</a>
 <a href="#software">Software</a>
-<a href="#presentations">Presentations</a>
+<a href="#presentation-videos">Presentation Videos</a>
+<a href="#presentation-slides">Presentation Slides</a>
 <a href="#posters">Posters</a>
 <a href="#cv">CV</a>
 <a href="#contact">Contact</a>
 </div>
-
 </div>
 </div>
-
 <!-- HOME -->
-
 <section id="home" class="container">
-
 <h1>Alexander Gaskins</h1>
-
 <p class="subtitle">
 Forest Resources & Conservation — Geomatics<br>
 Remote Sensing • AI • Forests • Earth Science
 </p>
-
 </section>
-
 <!-- SOFTWARE -->
-
 <section id="software" class="container">
-
 <h2>Software</h2>
-
 <p class="subtitle">
 FuelDeep3D: Fire Fuels Segmentation in 3D Using Terrestrial Laser Scanning and Deep Learning
 </p>
-
 <div class="buttons">
-
 <a href="https://cran.r-project.org/web/packages/FuelDeep3D/index.html"
 class="button button-cran" target="_blank">CRAN</a>
-
 <a href="https://github.com/venkatasivanaga/FuelDeep3D/tree/main"
 class="button button-github" target="_blank">GitHub</a>
-
 </div>
-
 <div class="video-container">
-
 <video autoplay loop muted playsinline poster="vlcsnap-2026-03-05-14h35m01s370.png">
 <source src="FuelDeep3D.mp4" type="video/mp4">
 </video>
-
 </div>
-
 </section>
-
-<!-- PRESENTATIONS -->
-
-<section id="presentations" class="container">
-
-<h2>Presentations</h2>
-
+<!-- PRESENTATION VIDEOS -->
+<section id="presentation-videos" class="container">
+<h2>Presentation Videos</h2>
+<div class="video-grid">
+  <!-- Add a new .video-card block for each presentation video -->
+  <div class="video-card">
+    <video controls poster="sesaf_presentation.jpg">
+      <source src="sesaf_video.mp4" type="video/mp4">
+    </video>
+    <p>SESAF Presentation</p>
+  </div>
+  <div class="video-card">
+    <video controls poster="FGSO_Presentation.jpg">
+      <source src="FGSO_video.mp4" type="video/mp4">
+    </video>
+    <p>UF FGSO 2025 Presentation</p>
+  </div>
+</div>
+</section>
+<!-- PRESENTATION SLIDES -->
+<section id="presentation-slides" class="container">
+<h2>Presentation Slides</h2>
 <div class="grid">
-
 <div class="card">
 <a href="sesaf_presentation.pptx" target="_blank">
 <img src="sesaf_presentation.jpg">
 <p>SESAF Presentation</p>
 </a>
 </div>
-
 <div class="card">
 <a href="FGSO_Presentation.pptx" target="_blank">
 <img src="FGSO_Presentation.jpg">
 <p>UF FGSO 2025 Presentation</p>
 </a>
 </div>
-
 </div>
-
 </section>
-
 <!-- POSTERS -->
-
 <section id="posters" class="container">
-
 <h2>Posters</h2>
-
 <div class="grid">
-
 <div class="card">
 <a href="moss.jpg" target="_blank">
 <img src="moss.jpg">
 <p>Spanish moss Poster</p>
 </a>
 </div>
-
 </div>
-
 </section>
-
 <!-- CV -->
-
 <section id="cv" class="container">
-
 <h2>CV</h2>
-
 <p>
 <a href="CV.pdf" target="_blank" class="button button-github">
 Download CV
 </a>
 </p>
-
 </section>
-
 <!-- CONTACT -->
-
 <section id="contact" class="container contact">
-
 <h2>Contact</h2>
-
 <a href="mailto:alexandergaskins@ufl.edu">alexandergaskins@ufl.edu</a>
-
 <a href="mailto:gaskins.alex@yahoo.com">gaskins.alex@yahoo.com</a>
-
 <a href="https://github.com/alexandergaskins" target="_blank">
 GitHub
 </a>
-
 <a href="https://www.linkedin.com/in/alexandergaskins" target="_blank">
 LinkedIn
 </a>
-
 </section>
-
 </body>
 </html>
