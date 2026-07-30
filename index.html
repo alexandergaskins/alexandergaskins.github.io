@@ -225,6 +225,15 @@ h3{
 .prose p:last-child{margin-bottom:0}
 .byline{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
 
+/* publications */
+.pub + .pub{margin-top:clamp(38px,5vw,58px);padding-top:clamp(38px,5vw,58px);border-top:1px solid var(--hair)}
+.pub h3{font-size:clamp(20px,2.2vw,27px);max-width:30ch;margin-bottom:12px}
+.cite{
+  font-family:var(--mono);font-size:12.5px;line-height:1.85;
+  color:var(--slate);max-width:var(--measure);margin:0;
+}
+.cite strong{color:var(--ink);font-weight:500}
+
 .linkrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .link{
   font-family:var(--mono);font-size:12.5px;text-decoration:none;
@@ -324,6 +333,7 @@ footer{
   <div class="nav-in">
     <a class="mark" href="#top">Alexander Gaskins</a>
     <div class="nav-links">
+      <a href="#publications">Publications</a>
       <a href="#software">Software</a>
       <a href="#talks">Talks</a>
       <a href="#contact">Contact</a>
@@ -348,7 +358,7 @@ footer{
     </p>
 
     <div class="actions">
-      <a class="btn btn-solid" href="#software">Software</a>
+      <a class="btn btn-solid" href="#publications">Publications</a>
       <a class="btn btn-ghost" href="CV.pdf" target="_blank" rel="noopener">Download CV</a>
       <a class="btn btn-ghost" href="mailto:alexandergaskins@ufl.edu">Email</a>
     </div>
@@ -358,6 +368,37 @@ footer{
 </header>
 
 <main id="main">
+
+<!-- ================= PUBLICATIONS ================= -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="rail">
+      <h2>Publications</h2>
+    </div>
+
+    <div>
+      <article class="pub">
+        <p class="status"><span class="dot"></span>Scientific Reports, 2026 &middot; Open access</p>
+
+        <h3>Advancing terrestrial laser scanning for 3D classification of Spanish moss
+          (<em>Tillandsia usneoides</em> L.) using unsupervised, machine learning,
+          and deep learning methods</h3>
+
+        <p class="cite">
+          <strong>Gaskins, A. J.</strong>, Xia, J., Bueno, I. T. &amp; Silva, C. A. (2026).
+          <em>Scientific Reports</em> 16, 18295.
+        </p>
+
+        <div class="linkrow">
+          <a class="link" href="https://doi.org/10.1038/s41598-026-49230-7" target="_blank" rel="noopener">Read the paper</a>
+          <!-- Links to the publisher PDF, which will always be there. To serve your own
+               copy instead, save the PDF beside index.html and use href="Gaskins-2026-SciRep.pdf" -->
+          <a class="link" href="https://www.nature.com/articles/s41598-026-49230-7.pdf" target="_blank" rel="noopener">PDF</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <!-- ================= SOFTWARE ================= -->
 <section class="section" id="software">
@@ -496,6 +537,28 @@ footer{
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ScholarlyArticle",
+  "headline":"Advancing terrestrial laser scanning for 3D classification of Spanish moss (Tillandsia usneoides L.) using unsupervised, machine learning, and deep learning methods",
+  "author":[
+    {"@type":"Person","name":"Alexander J. Gaskins"},
+    {"@type":"Person","name":"Jinyi Xia"},
+    {"@type":"Person","name":"Inacio T. Bueno"},
+    {"@type":"Person","name":"Carlos A. Silva"}
+  ],
+  "isPartOf":{"@type":"Periodical","name":"Scientific Reports","issn":"2045-2322"},
+  "volumeNumber":"16",
+  "pageStart":"18295",
+  "datePublished":"2026-04-20",
+  "identifier":"https://doi.org/10.1038/s41598-026-49230-7",
+  "url":"https://www.nature.com/articles/s41598-026-49230-7",
+  "isAccessibleForFree":true,
+  "license":"https://creativecommons.org/licenses/by/4.0/"
+}
+</script>
+
 <script>
 (function(){
   "use strict";
@@ -560,14 +623,13 @@ footer{
      a plain text file with one point per line, X,Y,Z. Any extra
      columns are ignored. A header row is optional.
 
-     To make it in R (decimate first, aim for 40k to 150k points):
+     To make it in R (thin it first, aim for 40k to 150k points):
 
        library(lidR)
        las <- readLAS("your_scan.laz")
-       las <- decimate_points(las, random(80000))
-       write.table(round(data.frame(las@data$X, las@data$Y, las@data$Z), 3),
-                   "points.csv", sep = ",", row.names = FALSE,
-                   col.names = c("x","y","z"), quote = FALSE)
+       i   <- sample(seq_len(npoints(las)), min(80000, npoints(las)))
+       df  <- data.frame(x = las$X[i], y = las$Y[i], z = las$Z[i])
+       write.csv(round(df, 3), "points.csv", row.names = FALSE)
 
      Z is treated as height and drives the colour. If your scan is
      recorded with Y as up, set SWAP_YZ to false below.
