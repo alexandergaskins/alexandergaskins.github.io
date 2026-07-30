@@ -4,24 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Alexander Gaskins — 3D forest remote sensing, TLS &amp; deep learning</title>
+<title>Alexander Gaskins</title>
 
-<!-- ============================================================
-     EDIT ME: replace with your live URL before publishing.
-     Everything marked "EDIT ME" is a placeholder for you to fill in.
-     ============================================================ -->
+<!-- EDIT ME: replace with your live URL before publishing. -->
 <link rel="canonical" href="https://alexandergaskins.github.io/">
 
-<meta name="description" content="Alexander Gaskins is a forest geomatics researcher at the University of Florida working on terrestrial laser scanning, 3D deep learning, and forest fuel and biomass estimation. Co-author of the FuelDeep3D R package.">
+<meta name="description" content="Alexander Gaskins, MS student in Forest Resources and Conservation with a concentration in Geomatics at the University of Florida. Terrestrial laser scanning, deep learning, and forest measurement. Co-author of the FuelDeep3D R package.">
 <meta name="author" content="Alexander Gaskins">
 <meta name="theme-color" content="#0E1416">
 
-<!-- Open Graph / social cards -->
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Alexander Gaskins — 3D forest remote sensing">
-<meta property="og:description" content="Terrestrial laser scanning, 3D deep learning, and forest fuel and biomass estimation at the University of Florida.">
+<meta property="og:title" content="Alexander Gaskins">
+<meta property="og:description" content="MS student in Forest Resources and Conservation (Geomatics) at the University of Florida. Terrestrial laser scanning, deep learning, and forest measurement.">
 <meta property="og:url" content="https://alexandergaskins.github.io/">
-<!-- EDIT ME: ideally a purpose-made 1200x630 image. Using the FuelDeep3D still for now. -->
+<!-- EDIT ME: ideally a purpose made 1200x630 image. Using the FuelDeep3D still for now. -->
 <meta property="og:image" content="vlcsnap-2026-03-05-14h35m01s370.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -34,32 +30,27 @@
 <style>
 /* ============================================================
    TOKENS
-   Palette is the viridis colour ramp — the colormap used in
-   basically every point-cloud figure in this field (and the one
-   FuelDeep3D itself imports via viridisLite).
+   Palette is the viridis colour ramp, the colormap used in most
+   point cloud figures and the one FuelDeep3D imports.
    ============================================================ */
 :root{
-  --void:#0E1416;        /* scan-viewer black */
-  --void-2:#151D1F;
-  --paper:#EDEEE9;       /* lichen grey-white */
+  --void:#0E1416;
+  --paper:#EDEEE9;
   --paper-2:#E3E5DE;
   --ink:#141A18;
   --slate:#59635F;
   --hair:#CDD1C9;
 
-  --v-blue:#31688E;
   --v-green:#35B779;
   --v-yellow:#FDE725;
-
-  --accent:var(--v-green);
-  --accent-ink:#1E6A46;   /* accessible green on light paper */
+  --accent-ink:#1E6A46;
 
   --display:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   --gap:clamp(28px,5vw,64px);
-  --measure:64ch;
+  --measure:62ch;
 }
 
 @media (prefers-color-scheme:dark){
@@ -89,16 +80,11 @@ body{
   font-size:clamp(16px,1.05vw,17.5px);
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
 }
 
 a{color:inherit}
 
-:focus-visible{
-  outline:2px solid var(--v-yellow);
-  outline-offset:3px;
-  border-radius:2px;
-}
+:focus-visible{outline:2px solid var(--v-yellow);outline-offset:3px;border-radius:2px}
 
 .skip{
   position:absolute;left:-9999px;top:0;
@@ -107,10 +93,7 @@ a{color:inherit}
 }
 .skip:focus{left:0}
 
-/* ============================================================
-   NAV — permanently dark, framing the light page between the
-   dark hero and dark footer.
-   ============================================================ */
+/* ================= NAV ================= */
 .nav{
   position:sticky;top:0;z-index:900;
   background:rgba(14,20,22,.92);
@@ -122,15 +105,12 @@ a{color:inherit}
 .nav-in{
   max-width:1160px;margin:0 auto;
   padding:0 clamp(18px,4vw,44px);
-  height:58px;
-  display:flex;align-items:center;gap:18px;
+  height:58px;display:flex;align-items:center;gap:18px;
 }
 .mark{
   font-family:var(--display);font-weight:700;letter-spacing:-.02em;
   font-size:15px;text-decoration:none;white-space:nowrap;flex:0 0 auto;
 }
-.mark span{color:var(--v-green)}
-
 .nav-links{
   display:flex;gap:4px;margin-left:auto;align-items:center;
   overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
@@ -143,27 +123,18 @@ a{color:inherit}
 }
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
 .nav-links a[aria-current="true"]{color:var(--v-green)}
-.nav-cv{
-  border:1px solid rgba(53,183,121,.5);
-  color:var(--v-green) !important;
-}
+.nav-cv{border:1px solid rgba(53,183,121,.5);color:var(--v-green) !important}
 .nav-cv:hover{background:rgba(53,183,121,.14) !important;color:var(--v-green) !important}
 
-/* ============================================================
-   HERO — the signature: a live terrestrial-scan point cloud of a
-   moss-draped live oak limb, coloured by height.
-   ============================================================ */
+/* ================= HERO ================= */
 .hero{
   position:relative;overflow:hidden;
   background:var(--void);color:#EAF0EC;
-  min-height:clamp(520px,78svh,760px);
+  min-height:clamp(500px,74svh,720px);
   display:flex;align-items:center;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
-#cloud{
-  position:absolute;inset:0;width:100%;height:100%;
-  touch-action:pan-y;cursor:grab;
-}
+#cloud{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab}
 #cloud:active{cursor:grabbing}
 .hero-veil{
   position:absolute;inset:0;pointer-events:none;
@@ -172,9 +143,8 @@ a{color:inherit}
     linear-gradient(100deg,rgba(14,20,22,.94) 0%,rgba(14,20,22,.80) 38%,rgba(14,20,22,0) 68%);
 }
 @media (max-width:860px){
-  .hero-veil{background:linear-gradient(180deg,rgba(14,20,22,.92) 0%,rgba(14,20,22,.72) 55%,rgba(14,20,22,.95) 100%)}
+  .hero-veil{background:linear-gradient(180deg,rgba(14,20,22,.92) 0%,rgba(14,20,22,.70) 55%,rgba(14,20,22,.95) 100%)}
 }
-
 .hero-in{
   position:relative;z-index:2;
   max-width:1160px;margin:0 auto;width:100%;
@@ -183,36 +153,22 @@ a{color:inherit}
 }
 .hero-in a{pointer-events:auto}
 
-.eyebrow{
-  font-family:var(--mono);font-size:12px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--v-green);
-  display:flex;align-items:center;gap:10px;margin:0 0 22px;
-}
-.eyebrow::before{
-  content:"";width:26px;height:1px;background:var(--v-green);flex:0 0 auto;
-}
-
 h1{
   font-family:var(--display);font-weight:700;
   font-size:clamp(42px,6.4vw,80px);
   line-height:.98;letter-spacing:-.035em;
-  margin:0 0 22px;max-width:12ch;
+  margin:0 0 24px;max-width:12ch;
 }
-.hero-lede{
-  font-size:clamp(17px,1.6vw,21px);
-  line-height:1.55;max-width:38ch;color:#CDD8D2;margin:0 0 12px;
-}
-.hero-lede em{color:#fff;font-style:normal;font-weight:600}
 .hero-affil{
-  font-family:var(--mono);font-size:12.5px;color:#8C9C95;
-  max-width:44ch;margin:0 0 34px;line-height:1.7;
+  font-family:var(--mono);font-size:13px;color:#9DADA6;
+  max-width:46ch;margin:0 0 34px;line-height:1.85;
 }
-.hero-affil a{color:#B6C4BE}
+.hero-affil a{color:#C3D0CA}
 
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .btn{
-  font-family:var(--mono);font-size:13px;letter-spacing:.01em;
-  text-decoration:none;padding:12px 20px;border-radius:3px;
+  font-family:var(--mono);font-size:13px;text-decoration:none;
+  padding:12px 20px;border-radius:3px;
   display:inline-flex;align-items:center;gap:9px;
   border:1px solid transparent;transition:transform .18s,background .18s,border-color .18s;
 }
@@ -226,25 +182,21 @@ h1{
   position:absolute;right:clamp(16px,4vw,40px);bottom:18px;z-index:2;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
   text-transform:uppercase;color:#5F6F69;text-align:right;line-height:1.9;
-  pointer-events:none;
+  pointer-events:none;opacity:0;transition:opacity .6s;
 }
+.hud.on{opacity:1}
 .hud b{color:var(--v-yellow);font-weight:400}
 @media (max-width:600px){.hud{display:none}}
 
-/* ============================================================
-   SECTIONS — a mono metadata rail beside the content, the way a
-   scan sheet labels its columns.
-   ============================================================ */
+/* ================= SECTIONS ================= */
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
 
-/* keeps section headings clear of the sticky bar when you jump to an anchor */
 .section,[id]{scroll-margin-top:74px}
-
-.section{padding:clamp(64px,9vw,116px) 0;border-bottom:1px solid var(--hair)}
+.section{padding:clamp(60px,8vw,104px) 0;border-bottom:1px solid var(--hair)}
 .section:last-of-type{border-bottom:0}
 .section > .wrap{display:grid;grid-template-columns:180px minmax(0,1fr);gap:var(--gap)}
 @media (max-width:860px){
-  .section > .wrap{grid-template-columns:1fr;gap:26px}
+  .section > .wrap{grid-template-columns:1fr;gap:24px}
 }
 
 .rail{position:sticky;top:88px;align-self:start}
@@ -254,64 +206,24 @@ h1{
   letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
   margin:0 0 8px;
 }
-.rail p{
-  font-family:var(--mono);font-size:11.5px;line-height:1.8;
-  color:var(--slate);margin:0;
-}
-
-.lede{
-  font-size:clamp(19px,2vw,25px);line-height:1.45;
-  letter-spacing:-.01em;max-width:26ch;margin:0 0 30px;
-  font-family:var(--display);font-weight:500;
-}
-.prose{max-width:var(--measure)}
-.prose p{margin:0 0 18px}
-.prose p:last-child{margin-bottom:0}
-.prose a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid rgba(53,183,121,.45)}
-.prose a:hover{border-bottom-color:var(--accent-ink)}
-
-/* facts list */
-.facts{
-  margin:34px 0 0;padding:0;list-style:none;
-  border-top:1px solid var(--hair);max-width:var(--measure);
-}
-.facts li{
-  display:grid;grid-template-columns:120px 1fr;gap:18px;
-  padding:13px 0;border-bottom:1px solid var(--hair);
-  font-family:var(--mono);font-size:13px;line-height:1.65;
-}
-.facts dt,.facts .k{
-  color:var(--slate);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding-top:3px;
-}
-@media (max-width:520px){
-  .facts li{grid-template-columns:1fr;gap:4px}
-}
-
-/* ============================================================
-   PROJECTS
-   ============================================================ */
-.project{padding-top:0}
-.project + .project{margin-top:clamp(48px,6vw,76px);padding-top:clamp(48px,6vw,76px);border-top:1px solid var(--hair)}
+.rail p{font-family:var(--mono);font-size:11.5px;line-height:1.8;color:var(--slate);margin:0}
 
 .status{
   font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
   display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;color:var(--slate);
 }
 .dot{width:7px;height:7px;border-radius:50%;background:var(--v-green);flex:0 0 auto}
-.dot.wip{background:var(--v-yellow)}
 
 h3{
   font-family:var(--display);font-weight:500;
   font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.025em;
-  margin:0 0 16px;max-width:22ch;
+  margin:0 0 16px;
 }
 
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0;padding:0;list-style:none}
-.tags li{
-  font-family:var(--mono);font-size:11px;letter-spacing:.04em;
-  padding:5px 10px;border:1px solid var(--hair);border-radius:2px;color:var(--slate);
-}
+.prose{max-width:var(--measure)}
+.prose p{margin:0 0 16px}
+.prose p:last-child{margin-bottom:0}
+.byline{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
 
 .linkrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .link{
@@ -322,9 +234,7 @@ h3{
 }
 .link:hover{border-color:var(--accent-ink);color:var(--accent-ink);transform:translateY(-2px)}
 .link::after{content:"↗";font-size:11px;opacity:.55}
-.link.plain::after{content:none}
 
-/* install snippet */
 .snippet{
   margin:26px 0 0;background:var(--void);border-radius:4px;
   display:flex;align-items:stretch;overflow:hidden;max-width:var(--measure);
@@ -342,29 +252,15 @@ h3{
 }
 .copy:hover{background:var(--v-green);color:#06120B}
 
-/* media */
-.media{
-  margin:30px 0 0;border-radius:5px;overflow:hidden;
-  background:var(--void);border:1px solid var(--hair);
-}
+.media{margin:30px 0 0;border-radius:5px;overflow:hidden;background:var(--void);border:1px solid var(--hair)}
 .media video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:var(--void)}
-figcaption{
-  font-family:var(--mono);font-size:11.5px;color:var(--slate);
-  padding:11px 14px;background:var(--paper-2);border-top:1px solid var(--hair);
-}
 
-/* ============================================================
-   TALKS GRID
-   ============================================================ */
-.cards{
-  display:grid;gap:22px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
+/* ================= CARDS ================= */
+.cards{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .card{
   display:flex;flex-direction:column;text-decoration:none;
   border:1px solid var(--hair);border-radius:5px;overflow:hidden;
-  background:var(--paper-2);
-  transition:transform .2s,border-color .2s;
+  background:var(--paper-2);transition:transform .2s,border-color .2s;
 }
 a.card:hover{transform:translateY(-4px);border-color:var(--accent-ink)}
 .thumb{
@@ -373,25 +269,17 @@ a.card:hover{transform:translateY(-4px);border-color:var(--accent-ink)}
 }
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.play{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(14,20,22,.32);transition:background .2s;
-}
+.play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(14,20,22,.32);transition:background .2s}
 .thumb:hover .play{background:rgba(14,20,22,.12)}
 .play span{
   width:56px;height:56px;border-radius:50%;background:var(--v-green);color:#06120B;
   display:flex;align-items:center;justify-content:center;font-size:19px;padding-left:4px;
 }
 .card-body{padding:15px 16px;display:flex;flex-direction:column;gap:5px}
-.card-kind{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--slate);
-}
+.card-kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
 .card-title{font-family:var(--display);font-weight:500;font-size:16.5px;letter-spacing:-.01em;line-height:1.3}
 
-/* ============================================================
-   CONTACT + FOOTER
-   ============================================================ */
+/* ================= CONTACT ================= */
 .contact-list{margin:0;padding:0;list-style:none;max-width:var(--measure)}
 .contact-list li{border-bottom:1px solid var(--hair)}
 .contact-list li:first-child{border-top:1px solid var(--hair)}
@@ -401,9 +289,7 @@ a.card:hover{transform:translateY(-4px);border-color:var(--accent-ink)}
   transition:color .18s,padding-left .18s;
 }
 .contact-list a:hover{color:var(--accent-ink);padding-left:8px}
-.contact-list .k{
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);
-}
+.contact-list .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
 .contact-list .arrow{opacity:.45;font-size:12px}
 @media (max-width:520px){
   .contact-list a{grid-template-columns:1fr auto;gap:2px 12px}
@@ -412,14 +298,10 @@ a.card:hover{transform:translateY(-4px);border-color:var(--accent-ink)}
 
 footer{
   background:var(--void);color:#7E8D87;
-  padding:44px 0;font-family:var(--mono);font-size:11.5px;line-height:1.8;
+  padding:38px 0;font-family:var(--mono);font-size:11.5px;
 }
-footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
-footer a{color:#A8B6B0}
 
-/* ============================================================
-   PRINT
-   ============================================================ */
+/* ================= PRINT ================= */
 @media print{
   .nav,.hud,#cloud,.hero-veil,.actions,.play,footer{display:none !important}
   .hero{min-height:0;background:#fff;color:#000;border:0}
@@ -428,7 +310,7 @@ footer a{color:#A8B6B0}
   .section{padding:18px 0;break-inside:avoid}
   .section > .wrap{grid-template-columns:140px 1fr}
   a{text-decoration:none}
-  .prose a::after,.link::after{content:" (" attr(href) ")";font-size:9pt;opacity:.7}
+  .link::after{content:" (" attr(href) ")";font-size:9pt;opacity:.7}
 }
 </style>
 </head>
@@ -440,10 +322,9 @@ footer a{color:#A8B6B0}
 <!-- ================= NAV ================= -->
 <nav class="nav" aria-label="Primary">
   <div class="nav-in">
-    <a class="mark" href="#top">Alexander Gaskins<span>.</span></a>
+    <a class="mark" href="#top">Alexander Gaskins</a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
+      <a href="#software">Software</a>
       <a href="#talks">Talks</a>
       <a href="#contact">Contact</a>
       <a class="nav-cv" href="CV.pdf" target="_blank" rel="noopener">CV ↓</a>
@@ -457,176 +338,66 @@ footer a{color:#A8B6B0}
   <div class="hero-veil" aria-hidden="true"></div>
 
   <div class="hero-in">
-    <p class="eyebrow">Forest geomatics · University of Florida</p>
-
     <h1>Alexander Gaskins</h1>
 
-    <p class="hero-lede">
-      I turn <em>terrestrial laser scans</em> of forests into measurements —
-      per-point fuel classes, per-voxel biomass, and the models that connect
-      them to what's actually on the ground.
-    </p>
-
     <p class="hero-affil">
-      MS candidate, School of Forest, Fisheries &amp; Geomatics Sciences —
-      <a href="https://carlos-alberto-silva.github.io/silvalab/lab.html" target="_blank" rel="noopener">Silva Lab</a>,
-      Forest Biometrics, Remote Sensing &amp; AI. Gainesville, Florida.
-      <!-- EDIT ME: adjust degree/title and lab if needed. -->
+      MS student, Forest Resources and Conservation, concentration in Geomatics.
+      University of Florida,
+      <a href="https://carlos-alberto-silva.github.io/silvalab/lab.html" target="_blank" rel="noopener">Silva Lab</a>.
+      <!-- EDIT ME: drop the Silva Lab link if you would rather not name the lab. -->
     </p>
 
     <div class="actions">
-      <a class="btn btn-solid" href="#work">See the work</a>
+      <a class="btn btn-solid" href="#software">Software</a>
       <a class="btn btn-ghost" href="CV.pdf" target="_blank" rel="noopener">Download CV</a>
-      <a class="btn btn-ghost" href="mailto:alexandergaskins@ufl.edu">Email me</a>
+      <a class="btn btn-ghost" href="mailto:alexandergaskins@ufl.edu">Email</a>
     </div>
   </div>
 
-  <p class="hud" id="hud">
-    <b id="ptcount">—</b> points · height-coloured (viridis)<br>
-    drag to rotate
-  </p>
+  <p class="hud" id="hud"></p>
 </header>
 
 <main id="main">
 
-<!-- ================= ABOUT ================= -->
-<section class="section" id="about">
+<!-- ================= SOFTWARE ================= -->
+<section class="section" id="software">
   <div class="wrap">
     <div class="rail">
-      <h2>About</h2>
-      <p>Research focus<br>&amp; toolkit</p>
+      <h2>Software</h2>
     </div>
 
     <div>
-      <p class="lede">Forests are three-dimensional. Most of the ways we measure them are not.</p>
+      <p class="status"><span class="dot"></span>On CRAN, v0.1.1</p>
+
+      <h3>FuelDeep3D</h3>
 
       <div class="prose">
-        <!-- EDIT ME: this is your voice — rewrite freely. -->
         <p>
-          I work on ground-based lidar: terrestrial laser scanning produces tens of
-          millions of returns per plot, and the interesting problem is turning that
-          cloud into something a forester or a fire modeller can actually use. That
-          means semantic segmentation to decide what each point <em>is</em>, and
-          calibration against destructively sampled field data to decide what it
-          <em>weighs</em>.
+          An R package that classifies terrestrial laser scanning point clouds into
+          stems, branches, foliage, and surface fuels using a PointNeXt deep learning
+          model, and writes the fuel classes back to LAS or LAZ.
         </p>
-        <p>
-          Two threads right now. The first is wildfire fuels — separating stems,
-          branches, foliage, and surface fuels in 3D, which became the
-          <a href="#fueldeep3d">FuelDeep3D</a> R package. The second is Spanish moss:
-          an epiphyte draped over most of the southern coastal plain, rarely counted
-          in fuel loads, and awkward to measure any way other than by cutting it down
-          and weighing it. I'm working out how well a scanner can do it instead.
-        </p>
+        <p class="byline">With Venkata Siva Reddy Naga and Carlos Alberto Silva.</p>
       </div>
 
-      <ul class="facts">
-        <li><span class="k">Focus</span><span>Terrestrial laser scanning · 3D semantic segmentation · fuels &amp; biomass</span></li>
-        <li><span class="k">Methods</span><span>PointNeXt · voxel-based feature extraction · random forest, SVR, alpha-shape geometry</span></li>
-        <li><span class="k">Tools</span><span>R (lidR, alphashape3d, reticulate) · Python (PyTorch) · LAS/LAZ workflows</span></li>
-        <li><span class="k">Based</span><span>Gainesville, Florida</span></li>
-        <!-- EDIT ME: add Education / Awards rows here, e.g.
-        <li><span class="k">Education</span><span>B.S. Forest Resources &amp; Conservation, University of Florida</span></li>
-        -->
-      </ul>
-    </div>
-  </div>
-</section>
+      <div class="snippet">
+        <code><span class="fn">install.packages</span>(<span class="str">"FuelDeep3D"</span>)</code>
+        <button class="copy" id="copybtn" type="button">Copy</button>
+      </div>
+      <p id="copystatus" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
 
-<!-- ================= WORK ================= -->
-<section class="section" id="work">
-  <div class="wrap">
-    <div class="rail">
-      <h2>Work</h2>
-      <p>Software &amp;<br>research projects</p>
-    </div>
+      <div class="media">
+        <video autoplay loop muted playsinline preload="metadata"
+               poster="vlcsnap-2026-03-05-14h35m01s370.png"
+               aria-label="FuelDeep3D classifying a terrestrial laser scan into fuel types">
+          <source src="FuelDeep3D.mp4" type="video/mp4">
+        </video>
+      </div>
 
-    <div>
-
-      <!-- ---------- Project: Spanish moss ---------- -->
-      <article class="project" id="moss">
-        <p class="status"><span class="dot wip"></span>Manuscript in preparation</p>
-
-        <h3>Weighing Spanish moss with a laser scanner</h3>
-
-        <div class="prose">
-          <p>
-            <em>Tillandsia usneoides</em> hangs through the canopy across the southern
-            United States, adds real mass to a stand, and is almost never included in
-            fuel-loading estimates — because the only reliable way to measure it has
-            been to cut it down and weigh it.
-          </p>
-          <p>
-            This project tests a non-destructive alternative. Deep-learning segmentation
-            separates moss from host-tree structure in TLS point clouds; each 10 cm voxel
-            is then described by its own geometry — alpha-shape volume, occupancy,
-            eigenvalue and silhouette features — and those descriptors are calibrated
-            against destructively sampled dry mass to predict biomass voxel by voxel.
-            The hard part is exactly where you'd expect: the densest clumps, where a
-            single scan position can only see the outside.
-          </p>
-        </div>
-
-        <ul class="tags">
-          <li>TLS</li><li>Semantic segmentation</li><li>Voxel modelling</li>
-          <li>Random forest / SVR</li><li>Destructive calibration</li>
-        </ul>
-
-        <div class="linkrow">
-          <a class="link" href="moss.jpg" target="_blank" rel="noopener">Poster</a>
-          <a class="link" href="https://1drv.ms/p/c/46305d93d7c98afa/IQDaCBsYz0PhRbssi__we3OmARaNyZPloSgW8DS_6Y44YCY?e=uQcOfw" target="_blank" rel="noopener">Slides</a>
-          <a class="link" href="#talks">Talk video</a>
-        </div>
-      </article>
-
-      <!-- ---------- Project: FuelDeep3D ---------- -->
-      <article class="project" id="fueldeep3d">
-        <p class="status"><span class="dot"></span>Published on CRAN · v0.1.1</p>
-
-        <h3>FuelDeep3D — fire fuels segmented in 3D</h3>
-
-        <div class="prose">
-          <p>
-            An R package that takes a raw <code>.las</code> file and returns a classified
-            one. It handles the whole path: ground classification with a cloth simulation
-            filter, height-above-ground metrics, tiling and sampling, building training
-            sets, running a PointNeXt model, and writing per-point fuel classes — stems,
-            branches, foliage, surface fuels — back into the point cloud for use in
-            inventory and fire-behaviour work.
-          </p>
-          <p>
-            Co-authored with Venkata Siva Reddy Naga and Carlos Alberto Silva. GPL-3.
-            Picked up as one of the month's notable new CRAN packages in the March 2026
-            R Works / R-bloggers roundup.
-          </p>
-        </div>
-
-        <div class="snippet">
-          <code id="install"><span class="fn">install.packages</span>(<span class="str">"FuelDeep3D"</span>)</code>
-          <button class="copy" id="copybtn" type="button">Copy</button>
-        </div>
-        <p class="sr-status" id="copystatus" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
-
-        <figure class="media" style="margin-bottom:0">
-          <video autoplay loop muted playsinline preload="metadata"
-                 poster="vlcsnap-2026-03-05-14h35m01s370.png"
-                 aria-label="Screen capture of FuelDeep3D classifying a terrestrial laser scan into fuel types">
-            <source src="FuelDeep3D.mp4" type="video/mp4">
-          </video>
-          <figcaption>FuelDeep3D classifying a scanned plot into per-point fuel types.</figcaption>
-        </figure>
-
-        <ul class="tags">
-          <li>R package</li><li>PointNeXt</li><li>Cloth simulation filter</li>
-          <li>lidR</li><li>reticulate + PyTorch</li>
-        </ul>
-
-        <div class="linkrow">
-          <a class="link" href="https://CRAN.R-project.org/package=FuelDeep3D" target="_blank" rel="noopener">CRAN</a>
-          <a class="link" href="https://github.com/venkatasivanaga/FuelDeep3D" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </article>
-
+      <div class="linkrow">
+        <a class="link" href="https://CRAN.R-project.org/package=FuelDeep3D" target="_blank" rel="noopener">CRAN</a>
+        <a class="link" href="https://github.com/venkatasivanaga/FuelDeep3D" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
   </div>
 </section>
@@ -636,44 +407,39 @@ footer a{color:#A8B6B0}
   <div class="wrap">
     <div class="rail">
       <h2>Talks &amp; posters</h2>
-      <p>Presentations,<br>slides, posters</p>
     </div>
 
-    <div>
-      <p class="lede">Presenting the moss work.</p>
+    <div class="cards">
 
-      <div class="cards">
-
-        <!-- Video: click-to-load, so the page doesn't ship a MB of YouTube on arrival -->
-        <div class="card">
-          <button class="thumb" id="ytfacade" type="button"
-                  aria-label="Play the Spanish moss presentation on YouTube">
-            <img src="https://i.ytimg.com/vi/_b7H3WasvBk/hqdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="play"><span aria-hidden="true">▶</span></span>
-          </button>
-          <div class="card-body">
-            <span class="card-kind">Video</span>
-            <span class="card-title">Spanish moss presentation</span>
-          </div>
+      <!-- YouTube loads only on click, so the page does not ship a megabyte on arrival -->
+      <div class="card">
+        <button class="thumb" id="ytfacade" type="button"
+                aria-label="Play the Spanish moss presentation on YouTube">
+          <img src="https://i.ytimg.com/vi/_b7H3WasvBk/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+          <span class="play"><span aria-hidden="true">▶</span></span>
+        </button>
+        <div class="card-body">
+          <span class="card-kind">Video</span>
+          <span class="card-title">Spanish moss presentation</span>
         </div>
-
-        <a class="card" href="https://1drv.ms/p/c/46305d93d7c98afa/IQDaCBsYz0PhRbssi__we3OmARaNyZPloSgW8DS_6Y44YCY?e=uQcOfw" target="_blank" rel="noopener">
-          <span class="thumb"><img src="moss_pres.jpg" alt="Title slide of the Spanish moss presentation" loading="lazy" decoding="async"></span>
-          <span class="card-body">
-            <span class="card-kind">Slides</span>
-            <span class="card-title">Spanish moss — presentation deck</span>
-          </span>
-        </a>
-
-        <a class="card" href="moss.jpg" target="_blank" rel="noopener">
-          <span class="thumb"><img src="moss.jpg" alt="Research poster on Spanish moss biomass estimation from terrestrial laser scanning" loading="lazy" decoding="async"></span>
-          <span class="card-body">
-            <span class="card-kind">Poster</span>
-            <span class="card-title">Spanish moss biomass from TLS</span>
-          </span>
-        </a>
-
       </div>
+
+      <a class="card" href="https://1drv.ms/p/c/46305d93d7c98afa/IQDaCBsYz0PhRbssi__we3OmARaNyZPloSgW8DS_6Y44YCY?e=uQcOfw" target="_blank" rel="noopener">
+        <span class="thumb"><img src="moss_pres.jpg" alt="Title slide of the Spanish moss presentation" loading="lazy" decoding="async"></span>
+        <span class="card-body">
+          <span class="card-kind">Slides</span>
+          <span class="card-title">Spanish moss</span>
+        </span>
+      </a>
+
+      <a class="card" href="moss.jpg" target="_blank" rel="noopener">
+        <span class="thumb"><img src="moss.jpg" alt="Research poster on Spanish moss biomass from terrestrial laser scanning" loading="lazy" decoding="async"></span>
+        <span class="card-body">
+          <span class="card-kind">Poster</span>
+          <span class="card-title">Spanish moss</span>
+        </span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -683,20 +449,17 @@ footer a{color:#A8B6B0}
   <div class="wrap">
     <div class="rail">
       <h2>Contact</h2>
-      <p>Open to PhD<br>positions &amp;<br>collaboration</p>
-      <!-- EDIT ME: or delete that line if it's not true right now. -->
+      <p>Open to<br>collaboration</p>
     </div>
 
     <div>
-      <p class="lede">Happy to talk scanning, fuels, or anything point-cloud shaped.</p>
-
       <ul class="contact-list">
         <li><a href="mailto:alexandergaskins@ufl.edu"><span class="k">University</span><span>alexandergaskins@ufl.edu</span><span class="arrow">→</span></a></li>
         <li><a href="mailto:gaskins.alex@yahoo.com"><span class="k">Personal</span><span>gaskins.alex@yahoo.com</span><span class="arrow">→</span></a></li>
         <li><a href="https://github.com/alexandergaskins" target="_blank" rel="noopener"><span class="k">GitHub</span><span>@alexandergaskins</span><span class="arrow">↗</span></a></li>
         <li><a href="https://www.linkedin.com/in/alexandergaskins" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span>in/alexandergaskins</span><span class="arrow">↗</span></a></li>
         <li><a href="CV.pdf" target="_blank" rel="noopener"><span class="k">CV</span><span>Curriculum vitae (PDF)</span><span class="arrow">↓</span></a></li>
-        <!-- EDIT ME: add these once you have them —
+        <!-- EDIT ME: add these once you have them.
         <li><a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX" target="_blank" rel="noopener"><span class="k">ORCID</span><span>0000-0000-0000-0000</span><span class="arrow">↗</span></a></li>
         <li><a href="https://scholar.google.com/citations?user=XXXX" target="_blank" rel="noopener"><span class="k">Scholar</span><span>Google Scholar</span><span class="arrow">↗</span></a></li>
         -->
@@ -708,20 +471,16 @@ footer a{color:#A8B6B0}
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>© <span id="yr">2026</span> Alexander Gaskins</span>
-    <span>Hero: procedural point cloud, canvas 2D, no libraries</span>
-  </div>
+  <div class="wrap">© <span id="yr">2026</span> Alexander Gaskins</div>
 </footer>
 
-<!-- Structured data: helps Google show you properly for your own name -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"Person",
   "name":"Alexander Gaskins",
   "alternateName":"Alexander John Gaskins",
-  "jobTitle":"Graduate researcher, forest geomatics",
+  "jobTitle":"MS student, Forest Resources and Conservation (Geomatics)",
   "email":"mailto:alexandergaskins@ufl.edu",
   "affiliation":{
     "@type":"CollegeOrUniversity",
@@ -749,7 +508,7 @@ footer a{color:#A8B6B0}
     copyBtn.addEventListener("click", function(){
       navigator.clipboard.writeText('install.packages("FuelDeep3D")').then(function(){
         copyBtn.textContent = "Copied";
-        document.getElementById("copystatus").textContent = "Install command copied to clipboard";
+        document.getElementById("copystatus").textContent = "Install command copied";
         setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1800);
       });
     });
@@ -757,7 +516,7 @@ footer a{color:#A8B6B0}
     copyBtn.hidden = true;
   }
 
-  /* ---------- YouTube: load only on click ---------- */
+  /* ---------- YouTube loads on click ---------- */
   var facade = document.getElementById("ytfacade");
   if (facade) {
     facade.addEventListener("click", function(){
@@ -778,7 +537,7 @@ footer a{color:#A8B6B0}
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
       var best = null, bestVal = 0;
-      Object.keys(seen).forEach(function(id){ if (seen[id] > bestVal) { bestVal = seen[id]; best = id; } });
+      Object.keys(seen).forEach(function(id){ if (seen[id] > bestVal){ bestVal = seen[id]; best = id; } });
       links.forEach(function(a){
         if (best && a.getAttribute("href") === "#" + best) a.setAttribute("aria-current","true");
         else a.removeAttribute("aria-current");
@@ -787,117 +546,41 @@ footer a{color:#A8B6B0}
     targets.forEach(function(t){ io.observe(t); });
   }
 
-  /* ---------- respect reduced motion for the demo video ---------- */
   var mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (mqReduce.matches) {
-    document.querySelectorAll("video[autoplay]").forEach(function(v){
+    Array.prototype.forEach.call(document.querySelectorAll("video[autoplay]"), function(v){
       v.removeAttribute("autoplay"); v.setAttribute("controls",""); v.pause();
     });
   }
 
   /* ==========================================================
-     THE POINT CLOUD
-     A procedural stand-in for a real terrestrial scan: a live oak
-     trunk and limb, moss drapes hanging off it, and concentric
-     ground rings — the giveaway pattern of a scanner sitting on a
-     tripod. Coloured by height on the viridis ramp.
+     HERO POINT CLOUD
+
+     Renders YOUR scan. It loads points.csv from this same folder:
+     a plain text file with one point per line, X,Y,Z. Any extra
+     columns are ignored. A header row is optional.
+
+     To make it in R (decimate first, aim for 40k to 150k points):
+
+       library(lidR)
+       las <- readLAS("your_scan.laz")
+       las <- decimate_points(las, random(80000))
+       write.table(round(data.frame(las@data$X, las@data$Y, las@data$Z), 3),
+                   "points.csv", sep = ",", row.names = FALSE,
+                   col.names = c("x","y","z"), quote = FALSE)
+
+     Z is treated as height and drives the colour. If your scan is
+     recorded with Y as up, set SWAP_YZ to false below.
+
+     If points.csv is missing the hero just stays dark, so the page
+     never shows anything fake.
      ========================================================== */
+  var SWAP_YZ = true;   // true = LAS convention (Z is height)
+  var SPIN    = true;   // set false to stop the slow auto rotation
+
   var canvas = document.getElementById("cloud");
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext("2d", { alpha:false });
-
-  var VIRIDIS = [[68,1,84],[71,44,122],[59,81,139],[44,113,142],[33,144,141],[39,173,129],[92,200,99],[170,220,50],[253,231,37]];
-  function ramp(t){
-    t = t < 0 ? 0 : t > 1 ? 1 : t;
-    var x = t * (VIRIDIS.length - 1), i = Math.floor(x), f = x - i;
-    var a = VIRIDIS[i], b = VIRIDIS[Math.min(i + 1, VIRIDIS.length - 1)];
-    return [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f, a[2]+(b[2]-a[2])*f];
-  }
-
-  var LUTN = 48, BANDS = 26, ALPHAS = [0.28,0.45,0.62,0.8,1.0];
-  var LUT = [];
-  for (var c = 0; c < LUTN; c++){
-    var rgb = ramp(c / (LUTN - 1)), row = [];
-    for (var a2 = 0; a2 < ALPHAS.length; a2++){
-      row.push("rgba(" + (rgb[0]|0) + "," + (rgb[1]|0) + "," + (rgb[2]|0) + "," + ALPHAS[a2] + ")");
-    }
-    LUT.push(row);
-  }
-
-  var GROUND = -0.95, TOP = 1.15;
-  var pts = [];
-  function push(x,y,z){
-    var t = (y - GROUND) / (TOP - GROUND);
-    pts.push(x, y, z, Math.max(0, Math.min(LUTN-1, Math.round(t*(LUTN-1)))));
-  }
-  function rnd(a,b){ return a + Math.random()*(b-a); }
-  function gauss(){ return (Math.random()+Math.random()+Math.random()-1.5)/1.5; }
-
-  // limb: sweeps right and slightly forward, sagging as it goes
-  function limb(t){
-    return {
-      x: -1.45 + t*3.05,
-      y: 0.80 - 0.30*t*t + 0.05*Math.sin(t*7.0),
-      z: -0.12 + 0.55*Math.sin(t*1.9) - 0.18*t
-    };
-  }
-
-  var dense = Math.min(window.innerWidth, 900) > 700 ? 1 : 0.5;
-
-  // trunk
-  var nTrunk = Math.round(760*dense);
-  for (var i = 0; i < nTrunk; i++){
-    var ty = rnd(GROUND, 0.92);
-    var rr = 0.155 + 0.05*Math.exp(-(ty-GROUND)*2.2) + gauss()*0.012;
-    var ang = Math.random()*Math.PI*2;
-    push(-1.5 + Math.cos(ang)*rr, ty, -0.12 + Math.sin(ang)*rr);
-  }
-  // limb
-  var nLimb = Math.round(1000*dense);
-  for (i = 0; i < nLimb; i++){
-    var t = Math.random(), p = limb(t);
-    var r2 = (0.115 - 0.075*t) * (1 + gauss()*0.12);
-    var an = Math.random()*Math.PI*2;
-    push(p.x + gauss()*0.012, p.y + Math.cos(an)*r2, p.z + Math.sin(an)*r2);
-  }
-  // moss drapes
-  var nD = Math.round(17*dense) + 4;
-  for (var d = 0; d < nD; d++){
-    var t0 = 0.08 + 0.9*(d/nD) + rnd(-0.03,0.03);
-    var anchor = limb(Math.min(0.99, Math.max(0.02, t0)));
-    var len = rnd(0.45, 1.45);
-    var sway = rnd(-0.16, 0.16), drift = rnd(-0.12, 0.12);
-    var wid = rnd(0.045, 0.115);
-    var nS = Math.round(rnd(90, 190)*dense);
-    for (var s = 0; s < nS; s++){
-      var u = Math.pow(Math.random(), 0.85);
-      var y2 = anchor.y - u*len;
-      if (y2 < GROUND + 0.06) continue;
-      var taper = wid * (0.55 + 0.75*Math.sin(u*Math.PI*0.9));
-      push(
-        anchor.x + sway*u*u + gauss()*taper,
-        y2 + gauss()*0.02,
-        anchor.z + drift*u*u + gauss()*taper
-      );
-    }
-  }
-  // ground: concentric scan rings around the tripod
-  var rings = Math.round(26*dense) + 6;
-  for (var g = 1; g <= rings; g++){
-    var rad = 0.28 + g*0.115;
-    var nPts = Math.round((14 + rad*30)*dense);
-    for (var k = 0; k < nPts; k++){
-      var th = Math.random()*Math.PI*2;
-      push(Math.cos(th)*rad*1.55 + 0.15, GROUND + gauss()*0.018, Math.sin(th)*rad*0.95 - 0.1);
-    }
-  }
-
-  var N = pts.length / 4;
-  var el = document.getElementById("ptcount");
-  if (el) el.textContent = N.toLocaleString();
-
-  var sx = new Float32Array(N), sy = new Float32Array(N), sz = new Float32Array(N);
-  var head = new Int32Array(BANDS), nxt = new Int32Array(N);
 
   var w = 0, h = 0, dpr = 1;
   function resize(){
@@ -906,13 +589,130 @@ footer a{color:#A8B6B0}
     canvas.width = Math.max(1, Math.round(w*dpr));
     canvas.height = Math.max(1, Math.round(h*dpr));
     ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle = "#0E1416";
+    ctx.fillRect(0,0,w,h);
+  }
+  resize();
+  window.addEventListener("resize", function(){ resize(); if (N) render(); });
+
+  var VIRIDIS = [[68,1,84],[71,44,122],[59,81,139],[44,113,142],[33,144,141],[39,173,129],[92,200,99],[170,220,50],[253,231,37]];
+  function ramp(t){
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    var x = t*(VIRIDIS.length-1), i = Math.floor(x), f = x-i;
+    var a = VIRIDIS[i], b = VIRIDIS[Math.min(i+1, VIRIDIS.length-1)];
+    return [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f, a[2]+(b[2]-a[2])*f];
+  }
+  var LUTN = 48, BANDS = 26, ALPHAS = [0.30,0.48,0.66,0.84,1.0], LUT = [];
+  for (var c = 0; c < LUTN; c++){
+    var rgb = ramp(c/(LUTN-1)), row = [];
+    for (var q = 0; q < ALPHAS.length; q++){
+      row.push("rgba("+(rgb[0]|0)+","+(rgb[1]|0)+","+(rgb[2]|0)+","+ALPHAS[q]+")");
+    }
+    LUT.push(row);
   }
 
-  var angle = -0.5, drag = false, lastX = 0, idleAt = 0, spin = true;
+  var N = 0, PX, PY, PZ, PC, sx, sy, sz, head, nxt;
+  var angle = -0.5, drag = false, lastX = 0, idleAt = 0, spinning = SPIN, running = true;
   var TILT = 0.10, CAM = 3.55, FOCAL = 2.55;
 
+  var MAXPTS = window.innerWidth > 860 ? 70000 : 25000;
+
+  fetch("points.csv", { cache:"force-cache" })
+    .then(function(r){ if (!r.ok) throw 0; return r.text(); })
+    .then(parse)
+    .then(start)
+    .catch(function(){
+      if (window.console) console.info("Hero point cloud: add points.csv (x,y,z) beside index.html.");
+    });
+
+  function parse(text){
+    var lines = text.split(/\r?\n/);
+    var first = 0;
+    if (lines.length && /[a-df-zA-DF-Z]/.test(lines[0])) first = 1;   // skip a header row
+    var total = lines.length - first;
+    var stride = Math.max(1, Math.ceil(total / MAXPTS));
+    var xs = [], ys = [], zs = [];
+    for (var i = first; i < lines.length; i += stride){
+      var l = lines[i];
+      if (!l) continue;
+      var p = l.split(/[,;\s]+/);
+      var a = parseFloat(p[0]), b = parseFloat(p[1]), cc = parseFloat(p[2]);
+      if (!isFinite(a) || !isFinite(b) || !isFinite(cc)) continue;
+      xs.push(a); ys.push(b); zs.push(cc);
+    }
+    return { xs:xs, ys:ys, zs:zs };
+  }
+
+  function start(d){
+    var n = d.xs.length;
+    if (!n) return;
+
+    // map to render space: x right, y up, z depth
+    var ux = d.xs, uy = SWAP_YZ ? d.zs : d.ys, uz = SWAP_YZ ? d.ys : d.zs;
+
+    var minx=Infinity,maxx=-Infinity,miny=Infinity,maxy=-Infinity,minz=Infinity,maxz=-Infinity;
+    for (var i = 0; i < n; i++){
+      if (ux[i]<minx) minx=ux[i]; if (ux[i]>maxx) maxx=ux[i];
+      if (uy[i]<miny) miny=uy[i]; if (uy[i]>maxy) maxy=uy[i];
+      if (uz[i]<minz) minz=uz[i]; if (uz[i]>maxz) maxz=uz[i];
+    }
+    var cxw = (minx+maxx)/2, cyw = (miny+maxy)/2, czw = (minz+maxz)/2;
+    var ext = Math.max(maxx-minx, maxy-miny, maxz-minz) || 1;
+    var k = 2.0/ext;
+    var yspan = (maxy-miny) || 1;
+
+    N = n;
+    PX = new Float32Array(n); PY = new Float32Array(n); PZ = new Float32Array(n);
+    PC = new Uint8Array(n);
+    sx = new Float32Array(n); sy = new Float32Array(n); sz = new Float32Array(n);
+    head = new Int32Array(BANDS); nxt = new Int32Array(n);
+
+    for (i = 0; i < n; i++){
+      PX[i] = (ux[i]-cxw)*k;
+      PY[i] = (uy[i]-cyw)*k;
+      PZ[i] = (uz[i]-czw)*k;
+      var t = (uy[i]-miny)/yspan;
+      PC[i] = Math.max(0, Math.min(LUTN-1, Math.round(t*(LUTN-1))));
+    }
+
+    var hud = document.getElementById("hud");
+    if (hud){
+      hud.innerHTML = "<b>" + n.toLocaleString() + "</b> points" +
+                      (mqReduce.matches ? "" : "<br>drag to rotate");
+      hud.className = "hud on";
+    }
+
+    if ("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){ running = es[0].isIntersecting; }).observe(canvas);
+    }
+
+    canvas.addEventListener("pointerdown", function(e){
+      drag = true; spinning = false; lastX = e.clientX;
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", function(e){
+      if (!drag) return;
+      angle += (e.clientX - lastX) * 0.006;
+      lastX = e.clientX;
+      if (mqReduce.matches) render();
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+      canvas.addEventListener(ev, function(){ if (drag){ drag = false; idleAt = performance.now(); } });
+    });
+
+    if (mqReduce.matches){ spinning = false; render(); }
+    else requestAnimationFrame(frame);
+  }
+
+  function frame(now){
+    if (spinning && !drag && running) angle += 0.0016;
+    if (!drag && !spinning && SPIN && now - idleAt > 2600) spinning = true;
+    if (running) render();
+    requestAnimationFrame(frame);
+  }
+
   function render(){
-    if (!w || !h) return;
+    if (!w || !h || !N) return;
     ctx.fillStyle = "#0E1416";
     ctx.fillRect(0,0,w,h);
 
@@ -925,11 +725,10 @@ footer a{color:#A8B6B0}
     var ct = Math.cos(TILT), st = Math.sin(TILT);
 
     head.fill(-1);
-    var minD = 1e9, maxD = -1e9;
+    var minD = 1e9, maxD = -1e9, i;
 
-    for (var i = 0; i < N; i++){
-      var o = i*4;
-      var x = pts[o], y = pts[o+1], z = pts[o+2];
+    for (i = 0; i < N; i++){
+      var x = PX[i], y = PY[i], z = PZ[i];
       var xr = x*ca - z*sa;
       var zr = x*sa + z*ca;
       var yr = y*ct - zr*st;
@@ -944,63 +743,24 @@ footer a{color:#A8B6B0}
       if (dd > maxD) maxD = dd;
     }
 
-    var span = (maxD - minD) || 1;
+    var span = (maxD-minD) || 1;
     for (i = 0; i < N; i++){
-      var b = ((sz[i]-minD)/span * (BANDS-1)) | 0;
+      var b = ((sz[i]-minD)/span*(BANDS-1))|0;
       if (b < 0) b = 0; else if (b > BANDS-1) b = BANDS-1;
       nxt[i] = head[b]; head[b] = i;
     }
 
     var prev = null;
     for (var band = BANDS-1; band >= 0; band--){
-      var aIdx = Math.min(ALPHAS.length-1, Math.round((1 - band/(BANDS-1)) * (ALPHAS.length-1)));
+      var aIdx = Math.min(ALPHAS.length-1, Math.round((1 - band/(BANDS-1))*(ALPHAS.length-1)));
       for (var j = head[band]; j !== -1; j = nxt[j]){
-        var col = LUT[pts[j*4+3]][aIdx];
+        var col = LUT[PC[j]][aIdx];
         if (col !== prev){ ctx.fillStyle = col; prev = col; }
-        var sizeP = FOCAL/sz[j] * 2.35;
-        if (sizeP < 0.8) sizeP = 0.8; else if (sizeP > 2.6) sizeP = 2.6;
-        ctx.fillRect(sx[j], sy[j], sizeP, sizeP);
+        var sp = FOCAL/sz[j]*2.2;
+        if (sp < 0.8) sp = 0.8; else if (sp > 2.6) sp = 2.6;
+        ctx.fillRect(sx[j], sy[j], sp, sp);
       }
     }
-  }
-
-  var running = true;
-  function frame(now){
-    if (spin && !drag && running) angle += 0.0016;
-    if (!drag && !spin && now - idleAt > 2600) spin = true;
-    if (running) render();
-    requestAnimationFrame(frame);
-  }
-
-  canvas.addEventListener("pointerdown", function(e){
-    drag = true; spin = false; lastX = e.clientX;
-    canvas.setPointerCapture(e.pointerId);
-  });
-  canvas.addEventListener("pointermove", function(e){
-    if (!drag) return;
-    angle += (e.clientX - lastX) * 0.006;
-    lastX = e.clientX;
-  });
-  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
-    canvas.addEventListener(ev, function(){ if (drag){ drag = false; idleAt = performance.now(); } });
-  });
-
-  window.addEventListener("resize", function(){ resize(); render(); });
-
-  if ("IntersectionObserver" in window){
-    new IntersectionObserver(function(es){ running = es[0].isIntersecting; })
-      .observe(canvas);
-  }
-
-  resize();
-  if (mqReduce.matches){
-    spin = false;
-    render();
-    var hud = document.getElementById("hud");
-    if (hud) hud.innerHTML = '<b>' + N.toLocaleString() + '</b> points · height-coloured (viridis)';
-    canvas.addEventListener("pointermove", function(){ if (drag) render(); });
-  } else {
-    requestAnimationFrame(frame);
   }
 })();
 </script>
