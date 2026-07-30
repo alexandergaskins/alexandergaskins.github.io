@@ -234,6 +234,18 @@ h3{
 }
 .cite strong{color:var(--ink);font-weight:500}
 
+/* figure lifted from the paper */
+.pubfig{
+  margin:28px 0 0;border:1px solid var(--hair);border-radius:5px;
+  overflow:hidden;background:#fff;
+}
+.pubfig a{display:block;line-height:0}
+.pubfig img{width:100%;height:auto;display:block}
+.pubfig figcaption{
+  font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--slate);
+  padding:11px 14px;background:var(--paper-2);border-top:1px solid var(--hair);
+}
+
 .linkrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .link{
   font-family:var(--mono);font-size:12.5px;text-decoration:none;
@@ -388,6 +400,18 @@ footer{
           <strong>Gaskins, A. J.</strong>, Xia, J., Bueno, I. T. &amp; Silva, C. A. (2026).
           <em>Scientific Reports</em> 16, 18295.
         </p>
+
+        <!-- EDIT ME: save your figure beside index.html as paper-figure.png.
+             Caption below should say which figure it is. If the file is missing
+             the whole block hides itself, so nothing breaks while you sort it out. -->
+        <figure class="pubfig" id="pubfig">
+          <a href="paper-figure.png" target="_blank" rel="noopener">
+            <img src="paper-figure.png"
+                 alt="Comparison of Spanish moss segmentation results across five classification methods, shown on a terrestrial laser scan of a single tree"
+                 loading="lazy" decoding="async">
+          </a>
+          <figcaption>Spanish moss segmented from a scanned tree, compared across five classification methods.</figcaption>
+        </figure>
 
         <div class="linkrow">
           <a class="link" href="https://doi.org/10.1038/s41598-026-49230-7" target="_blank" rel="noopener">Read the paper</a>
@@ -577,6 +601,15 @@ footer{
     });
   } else if (copyBtn) {
     copyBtn.hidden = true;
+  }
+
+  /* ---------- hide the paper figure if the file is not there yet ---------- */
+  var pubfig = document.getElementById("pubfig");
+  if (pubfig) {
+    var pimg = pubfig.querySelector("img");
+    var hide = function(){ pubfig.style.display = "none"; };
+    pimg.addEventListener("error", hide);
+    if (pimg.complete && pimg.naturalWidth === 0) hide();
   }
 
   /* ---------- YouTube loads on click ---------- */
