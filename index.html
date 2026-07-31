@@ -410,6 +410,7 @@ footer{
                  alt="Comparison of Spanish moss segmentation results across five classification methods, shown on a terrestrial laser scan of a single tree"
                  loading="lazy" decoding="async">
           </a>
+          <figcaption>Spanish moss segmented from a scanned tree, compared across five classification methods.</figcaption>
         </figure>
 
         <div class="linkrow">
@@ -711,7 +712,7 @@ footer{
 
   var MAXPTS = window.innerWidth > 860 ? 70000 : 25000;
 
-  fetch("points.csv", { cache:"force-cache" })
+  fetch("points.csv?v=" + Date.now(), { cache:"no-store" })
     .then(function(r){ if (!r.ok) throw 0; return r.text(); })
     .then(parse)
     .then(start)
