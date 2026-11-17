@@ -1,9 +1,9 @@
 const b=document.querySelector('.menu'),n=document.querySelector('#navigation');b?.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));n.classList.toggle('open',open)});const showcase=document.querySelector('#showcase-video');
 if(showcase){
  const play=document.querySelector('#video-play'), caption=document.querySelector('#video-caption'), status=document.querySelector('#video-status'), download=document.querySelector('#video-download');
- const clips={intro:{src:'assets/intro.mp4',label:'Spanish moss in 3D',caption:'Visualizing Spanish moss in a three-dimensional tree scan.'},fieldwork:{src:'assets/fieldwork.mp4',label:'Forest walkthrough',caption:'Collecting forest data with a backpack-mounted scanning system.'},fuel:{src:'assets/FuelDeep3D.mp4',label:'FuelDeep3D',caption:'Classifying forest fuel components from terrestrial laser scanning data using deep learning.'}};
+ const clips={intro:{src:'assets/intro.mp4',label:'Spanish moss in 3D',caption:'Visualizing Spanish moss in a three-dimensional tree scan.'},fieldwork:{src:'assets/fieldwork.mp4',label:'Forest walkthrough',caption:'Collecting forest data with a backpack-mounted scanning system.'},fuel:{src:'assets/FuelDeep3D.mp4',label:'FuelDeep3D',caption:'Classifying forest fuel components from terrestrial laser scanning data using deep learning.'},robot:{src:'assets/field-robot.mp4',label:'Field robot',caption:'A robotic platform in motion during field testing.'}};
  const selectors=[...document.querySelectorAll('[data-clip]')];
- const order=['intro','fuel','fieldwork'];
+ const order=['intro','fuel','fieldwork','robot'];
  let current='intro';
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
  showcase.muted=true;showcase.defaultMuted=true;showcase.autoplay=!reduced.matches;
